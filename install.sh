@@ -22,8 +22,10 @@ sudo apt update
 sudo apt upgrade
 
 echo -e "${yellow}Running firmware downgrade sequence...${NC}"
-curl -fsSL https://gist.githubusercontent.com/psyke83/cb3ca50561480809c246f42727cb7cf2/raw/5343bae57783ad855629b3acd5c238b2871edc87/downgrade_firmware.sh | sudo bash downgrade
-curl -fsSL https://gist.githubusercontent.com/psyke83/cb3ca50561480809c246f42727cb7cf2/raw/5343bae57783ad855629b3acd5c238b2871edc87/downgrade_firmware.sh | sudo bash block
+curl -fsSL https://gist.githubusercontent.com/psyke83/cb3ca50561480809c246f42727cb7cf2/raw/5343bae57783ad855629b3acd5c238b2871edc87/downgrade_firmware.sh -o downgrade_firmware.sh
+sudo chmod +x downgrade_firmware.sh
+./downgrade_firmware.sh downgrade
+./downgrade_firmware.sh block
 
 echo -e "Removing any prior remnant of ${green}python3-coral-enviro${NC}..."
 sudo apt remove python3-coral-enviro
