@@ -22,7 +22,7 @@ sudo apt update
 sudo apt upgrade
 
 echo -e "Downloading ${yellow}downgrade_firmware${NC} script..."
-curl -fsSL https://gist.githubusercontent.com/psyke83/cb3ca50561480809c246f42727cb7cf2/raw/5343bae57783ad855629b3acd5c238b2871edc87/downgrade_firmware.sh
+curl https://gist.githubusercontent.com/psyke83/cb3ca50561480809c246f42727cb7cf2/raw/5343bae57783ad855629b3acd5c238b2871edc87/downgrade_firmware.sh
 chmod +x downgrade_firmware.sh
 
 echo -e "${yellow}Running firmware downgrade sequence...${NC}"
