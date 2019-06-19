@@ -18,24 +18,24 @@ echo -e "Adding ${yellow}Google Cloud${NC} apt-key.gpg"
 curl https://packages.cloud.google.com/apt/doc/apt-key.gpg | sudo apt-key add -
 
 echo -e "${yellow}Starting update...${NC}"
-sudo apt update
-sudo apt upgrade
+sudo apt update -y
+sudo apt upgrade -y
 
 echo -e "${yellow}Running firmware downgrade sequence...${NC}"
 curl -fsSL https://gist.githubusercontent.com/psyke83/cb3ca50561480809c246f42727cb7cf2/raw/5343bae57783ad855629b3acd5c238b2871edc87/downgrade_firmware.sh -o downgrade_firmware.sh
 sudo chmod +x downgrade_firmware.sh
-./downgrade_firmware.sh downgrade
-./downgrade_firmware.sh block
+sudo ./downgrade_firmware.sh downgrade
+sudo ./downgrade_firmware.sh block
 
 echo -e "Removing any prior remnant of ${green}python3-coral-enviro${NC}..."
-sudo apt remove python3-coral-enviro
+sudo apt remove python3-coral-enviro -y
 
 echo -e "Cleaning packages..."
-sudo apt-get autoclean
-sudo apt-get autoremove
+sudo apt-get autoclean -y
+sudo apt-get autoremove -y
 
 echo -e "Re-installing ${green}python3-coral-enviro${NC}..."
-sudo apt install python3-coral-enviro
+sudo apt install python3-coral-enviro -y
 
 echo -e "Starting ${red}reboot${NC}..."
 sudo reboot
