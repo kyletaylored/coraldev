@@ -11,31 +11,31 @@ echo_green () { echo -e "${green}$1${NC}"; }
 echo_green_bg () { echo -e "${green_bg}$1${NC}"; }
 echo_yellow () { echo -e "${yellow}$1${NC}"; }
 
-echo -e "Adding ${green}coral-cloud-stable${NC} to apt sources"
+echo -e "${green_bg}Step 1:${NC} Adding ${green}coral-cloud-stable${NC} to apt sources"
 echo "deb https://packages.cloud.google.com/apt coral-cloud-stable main" | sudo tee /etc/apt/sources.list.d/coral-cloud.list
 
-echo -e "Adding ${yellow}Google Cloud${NC} apt-key.gpg"
+echo -e "${green_bg}Step 2:${NC} Adding ${yellow}Google Cloud${NC} apt-key.gpg"
 curl https://packages.cloud.google.com/apt/doc/apt-key.gpg | sudo apt-key add -
 
-echo -e "${yellow}Starting update...${NC}"
+echo -e "${green_bg}Step 3:${NC} ${yellow}Starting update...${NC}"
 sudo apt update -y
 sudo apt upgrade -y
 
-echo -e "${yellow}Running firmware downgrade sequence...${NC}"
+echo -e "${green_bg}Step 4:${NC} ${yellow}Running firmware downgrade sequence...${NC}"
 curl -fsSL https://gist.githubusercontent.com/psyke83/cb3ca50561480809c246f42727cb7cf2/raw/5343bae57783ad855629b3acd5c238b2871edc87/downgrade_firmware.sh -o downgrade_firmware.sh
 sudo chmod +x downgrade_firmware.sh
 sudo ./downgrade_firmware.sh downgrade
 sudo ./downgrade_firmware.sh block
 
-echo -e "Removing any prior remnant of ${green}python3-coral-enviro${NC}..."
+echo -e "${green_bg}Step 5:${NC} Removing any prior remnant of ${green}python3-coral-enviro${NC}..."
 sudo apt remove python3-coral-enviro -y
 
-echo -e "Cleaning packages..."
+echo -e "${green_bg}Step 6:${NC} Cleaning packages..."
 sudo apt-get autoclean -y
 sudo apt-get autoremove -y
 
-echo -e "Re-installing ${green}python3-coral-enviro${NC}..."
+echo -e "${green_bg}Step 7:${NC} Re-installing ${green}python3-coral-enviro${NC}..."
 sudo apt install python3-coral-enviro -y
 
-echo -e "Starting ${red}reboot${NC}..."
+echo -e "${green_bg}Step 8:${NC} Starting ${red}reboot${NC}..."
 sudo reboot
